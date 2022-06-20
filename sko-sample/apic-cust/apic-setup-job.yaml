@@ -1,0 +1,35 @@
+kind: Job
+apiVersion: batch/v1
+metadata:
+  name: apim-demo-setup-job
+  namespace: tools
+  labels:
+    job-name: apim-demo-setup-job
+spec:
+  parallelism: 1
+  completions: 1
+  backoffLimit: 1
+  selector: {}
+  template:
+    metadata:
+      name: run
+      labels:
+        job-name: apim-demo-setup-job
+    spec:
+      containers:
+        - name: run
+          image: 'quay.io/vbudi/sko-job:1.1'
+          command:
+            - "/user1/apic-config.sh"
+          resources: {}
+          terminationMessagePath: /dev/termination-log
+          terminationMessagePolicy: File
+          imagePullPolicy: Always
+          envFrom:
+          - secretRef:
+              name: apic-setup-mail
+      restartPolicy: Never
+      terminationGracePeriodSeconds: 30
+      dnsPolicy: ClusterFirst
+      securityContext: {}
+      schedulerName: default-scheduler
