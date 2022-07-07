@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: ConfigMap
 metadata:
-  name: mqsc-mq-demo
+  name: mq-demo-mqsc
   namespace: tools
 data:
   mq-demo-resources.mqsc: |

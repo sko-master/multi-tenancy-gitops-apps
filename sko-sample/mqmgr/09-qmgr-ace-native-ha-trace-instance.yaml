@@ -1,0 +1,43 @@
+apiVersion: mq.ibm.com/v1beta1
+kind: QueueManager
+metadata:
+  name: qmgr-demo
+  namespace: tools
+spec:
+  annotations:
+    productMetric: FREE
+  license:
+    accept: true
+    license: L-RJON-CD3JKX
+    use: NonProduction
+  queueManager:
+    name: QMGRDEMO
+    resources:
+      limits:
+        cpu: 500m
+      requests:
+        cpu: 500m
+    storage:
+      queueManager:
+        type: persistent-claim
+      defaultClass: ibmc-block-gold
+    availability:
+      type: NativeHA
+    mqsc:
+      - configMap:
+          name: mq-demo-mqsc
+          items:
+            - mq-demo-resources.mqsc
+  template:
+    pod:
+      containers:
+        - env:
+            - name: MQSNOAUT
+              value: 'yes'
+          name: qmgr
+  version: 9.3.0.0-r1
+  web:
+    enabled: true
+  tracing:
+    enabled: true
+    namespace: tools

@@ -1,7 +1,7 @@
 apiVersion: appconnect.ibm.com/v1beta1
 kind: IntegrationServer
 metadata:
-  name: jgr-mqapi-dflt
+  name: jgr-mock-backend
   namespace: tools
 spec:
   adminServerSecure: true
@@ -29,7 +29,10 @@ spec:
     endpointType: http
   version: 12.0-lts
   barURL: >-
-    https://github.com/gomezrjo/cp4idemo/raw/main/barfiles/jgr-cp4i-mqapi-dflt.bar
+    https://github.com/gomezrjo/cp4idemo/raw/main/barfiles/jgr-cp4i-mock-backend.bar
   configurations:
     - github-barauth
     - ace-qmgr-demo-policy
+  tracing:
+    enabled: true
+    namespace: tools

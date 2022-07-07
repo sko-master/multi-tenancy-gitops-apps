@@ -10,24 +10,24 @@ spec:
   enableMetrics: true
   license:
     accept: true
-    license: L-APEH-C9NCK6
+    license: L-APEH-CCHL5W
     use: CloudPakForIntegrationNonProduction
   pod:
     containers:
       runtime:
         resources:
           limits:
-            cpu: 300m
-            memory: 350Mi
+            cpu: 500m
+            memory: 512Mi
           requests:
-            cpu: 300m
-            memory: 300Mi
+            cpu: 500m
+            memory: 512Mi
   replicas: 1
   router:
     timeout: 120s
   service:
     endpointType: http
-  version: '12.0'
+  version: 12.0-lts
   barURL: >-
     https://github.com/gomezrjo/cp4idemo/raw/main/barfiles/jgr-cp4i-mqapi-prem.bar
   configurations:
